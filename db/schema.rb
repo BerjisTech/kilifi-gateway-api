@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_19_132826) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_19_134523) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -76,6 +76,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_132826) do
     t.index ["user_id"], name: "index_services_on_user_id"
   end
 
+  create_table "store_contacts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "store_id", null: false
+    t.string "contact_name"
+    t.string "contact_phone"
+    t.string "contact_email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_store_contacts_on_store_id"
+  end
+
+  create_table "stores", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "type"
+    t.string "coordinates"
+    t.string "location_name"
+    t.uuid "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_stores_on_user_id"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -109,4 +130,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_132826) do
   add_foreign_key "reviews", "users"
   add_foreign_key "services", "service_types"
   add_foreign_key "services", "users"
+  add_foreign_key "store_contacts", "stores"
+  add_foreign_key "stores", "users"
 end
