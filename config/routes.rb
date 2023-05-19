@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       # Other routes for this version of your API
     end
   end
-  
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
