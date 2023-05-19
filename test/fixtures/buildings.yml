@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  building_type: MyString
+  description: MyText
+  location: MyString
+  availability: false
+  rate: 9.99
+  owner_id: 1
+  image_url: MyString
+
+two:
+  name: MyString
+  building_type: MyString
+  description: MyText
+  location: MyString
+  availability: false
+  rate: 9.99
+  owner_id: 1
+  image_url: MyString
