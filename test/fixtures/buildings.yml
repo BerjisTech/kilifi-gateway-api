@@ -11,11 +11,11 @@ one:
   image_url: MyString
 
 two:
-  name: MyString
-  building_type: MyString
-  description: MyText
-  location: MyString
+  name: MyString1
+  building_type: MyString1
+  description: MyText1
+  location: MyString1
   availability: false
   rate: 9.99
   owner_id: 1
-  image_url: MyString
+  image_url: MyString1
