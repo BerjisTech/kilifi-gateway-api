@@ -1,6 +1,6 @@
 class CreateBuildings < ActiveRecord::Migration[7.0]
   def change
-    create_table :buildings do |t|
+    create_table :buildings, id: :uuid do |t|
       t.string :name
       t.string :building_type
       t.text :description
