@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class StoreContactsController < ApplicationController
+class StoreContactsController < Api::V1::ApiController
   before_action :set_store_contact, only: %i[show update destroy]
 
   # GET /store_contacts

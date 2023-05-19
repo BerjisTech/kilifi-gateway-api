@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BuildingsController < ApplicationController
+class BuildingsController < Api::V1::ApiController
   before_action :set_building, only: %i[show update destroy]
 
   # GET /buildings

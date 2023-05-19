@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class StaffsController < ApplicationController
+class StaffsController < Api::V1::ApiController
   before_action :set_staff, only: %i[show update destroy]
 
   # GET /staffs

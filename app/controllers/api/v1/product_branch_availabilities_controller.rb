@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ProductBranchAvailabilitiesController < ApplicationController
+class ProductBranchAvailabilitiesController < Api::V1::ApiController
   before_action :set_product_branch_availability, only: %i[show update destroy]
 
   # GET /product_branch_availabilities

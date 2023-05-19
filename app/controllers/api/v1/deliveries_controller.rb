@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DeliveriesController < ApplicationController
+class DeliveriesController < Api::V1::ApiController
   before_action :set_delivery, only: %i[show update destroy]
 
   # GET /deliveries

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class StoreBranchesController < ApplicationController
+class StoreBranchesController < Api::V1::ApiController
   before_action :set_store_branch, only: %i[show update destroy]
 
   # GET /store_branches

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ProductVariantsController < ApplicationController
+class ProductVariantsController < Api::V1::ApiController
   before_action :set_product_variant, only: %i[show update destroy]
 
   # GET /product_variants

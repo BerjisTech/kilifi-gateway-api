@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ServicesController < ApplicationController
+class ServicesController < Api::V1::ApiController
   before_action :set_service, only: %i[show update destroy]
 
   # GET /services

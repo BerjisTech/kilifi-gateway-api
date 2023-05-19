@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ProductImagesController < ApplicationController
+class ProductImagesController < Api::V1::ApiController
   before_action :set_product_image, only: %i[show update destroy]
 
   # GET /product_images
