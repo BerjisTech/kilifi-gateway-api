@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_19_134551) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_19_134620) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -44,6 +44,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_134551) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_owners_on_user_id"
+  end
+
+  create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.decimal "price"
+    t.decimal "discount"
+    t.boolean "availability"
+    t.string "product_type"
+    t.uuid "store_branch_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_branch_id"], name: "index_products_on_store_branch_id"
   end
 
   create_table "reviews", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -136,6 +149,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_134551) do
   add_foreign_key "bookings", "services"
   add_foreign_key "bookings", "users"
   add_foreign_key "owners", "users"
+  add_foreign_key "products", "store_branches"
   add_foreign_key "reviews", "services"
   add_foreign_key "reviews", "users"
   add_foreign_key "services", "service_types"
