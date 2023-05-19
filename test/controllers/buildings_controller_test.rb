@@ -6,7 +6,8 @@ class BuildingsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @building = buildings(:one)
     @user = users(:one)
-    @auth_headers = { Authorization: ActionController::HttpAuthentication::Basic.encode_credentials(@user.email, 'password') }
+    @auth_headers = { Authorization: ActionController::HttpAuthentication::Basic.encode_credentials(@user.email,
+                                                                                                    'password') }
   end
 
   test 'should get index' do
@@ -17,8 +18,9 @@ class BuildingsControllerTest < ActionDispatch::IntegrationTest
   test 'should create building' do
     assert_difference('Building.count') do
       post buildings_url,
-           params: { building: { availability: @building.availability, building_type: @building.building_type, description: @building.description, image_url: @building.image_url, location: @building.location, name: @building.name, owner_id: @building.owner_id, rate: @building.rate } }, 
-           headers: @auth_headers, 
+           params: { building: { availability: @building.availability, building_type: @building.building_type,
+                                 description: @building.description, image_url: @building.image_url, location: @building.location, name: @building.name, owner_id: @building.owner_id, rate: @building.rate } },
+           headers: @auth_headers,
            as: :json
     end
 
@@ -32,8 +34,9 @@ class BuildingsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should update building' do
     patch building_url(@building),
-          params: { building: { availability: @building.availability, building_type: @building.building_type, description: @building.description, image_url: @building.image_url, location: @building.location, name: @building.name, owner_id: @building.owner_id, rate: @building.rate } }, 
-          headers: @auth_headers, 
+          params: { building: { availability: @building.availability, building_type: @building.building_type,
+                                description: @building.description, image_url: @building.image_url, location: @building.location, name: @building.name, owner_id: @building.owner_id, rate: @building.rate } },
+          headers: @auth_headers,
           as: :json
     assert_response :success
   end
@@ -46,4 +49,3 @@ class BuildingsControllerTest < ActionDispatch::IntegrationTest
     assert_response :no_content
   end
 end
-
