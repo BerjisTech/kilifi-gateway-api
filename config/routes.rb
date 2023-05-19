@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: 'registrations' }
 
   namespace :api do
     namespace :v1 do
+      devise_for :users, controllers: { registrations: 'registrations' }
       resources :deliveries
       resources :product_branch_availabilities
       resources :staffs
