@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class BuildingsController < ApplicationController
-  before_action :set_building, only: %i[ show update destroy ]
+  before_action :set_building, only: %i[show update destroy]
 
   # GET /buildings
   def index
@@ -39,13 +41,15 @@ class BuildingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_building
-      @building = Building.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def building_params
-      params.require(:building).permit(:name, :building_type, :description, :location, :availability, :rate, :owner_id, :image_url)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_building
+    @building = Building.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def building_params
+    params.require(:building).permit(:name, :building_type, :description, :location, :availability, :rate, :owner_id,
+                                     :image_url)
+  end
 end
