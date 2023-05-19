@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_19_132521) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_19_132637) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -42,6 +42,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_132521) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "services", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.uuid "service_type_id", null: false
+    t.text "description"
+    t.decimal "service_price"
+    t.decimal "pricing_rate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["service_type_id"], name: "index_services_on_service_type_id"
+    t.index ["user_id"], name: "index_services_on_user_id"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -69,4 +81,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_132521) do
   end
 
   add_foreign_key "owners", "users"
+  add_foreign_key "services", "service_types"
+  add_foreign_key "services", "users"
 end
