@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :product_branch_availabilities
   resources :staffs
   resources :roles
   resources :product_images
