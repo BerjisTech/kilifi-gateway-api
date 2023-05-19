@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_19_134715) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_19_134744) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -86,6 +86,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_134715) do
     t.datetime "updated_at", null: false
     t.index ["service_id"], name: "index_reviews_on_service_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "store_id", null: false
+    t.string "name"
+    t.text "permissions"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_roles_on_store_id"
   end
 
   create_table "service_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -172,6 +181,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_134715) do
   add_foreign_key "products", "store_branches"
   add_foreign_key "reviews", "services"
   add_foreign_key "reviews", "users"
+  add_foreign_key "roles", "stores"
   add_foreign_key "services", "service_types"
   add_foreign_key "services", "users"
   add_foreign_key "store_branches", "stores"
