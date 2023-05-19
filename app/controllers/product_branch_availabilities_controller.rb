@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ProductBranchAvailabilitiesController < ApplicationController
-  before_action :set_product_branch_availability, only: %i[ show update destroy ]
+  before_action :set_product_branch_availability, only: %i[show update destroy]
 
   # GET /product_branch_availabilities
   def index
@@ -39,13 +41,14 @@ class ProductBranchAvailabilitiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product_branch_availability
-      @product_branch_availability = ProductBranchAvailability.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def product_branch_availability_params
-      params.require(:product_branch_availability).permit(:product_id, :store_branch_id, :availability)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product_branch_availability
+    @product_branch_availability = ProductBranchAvailability.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def product_branch_availability_params
+    params.require(:product_branch_availability).permit(:product_id, :store_branch_id, :availability)
+  end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProductBranchAvailability < ApplicationRecord
   belongs_to :product
   belongs_to :store_branch

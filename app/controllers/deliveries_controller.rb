@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class DeliveriesController < ApplicationController
-  before_action :set_delivery, only: %i[ show update destroy ]
+  before_action :set_delivery, only: %i[show update destroy]
 
   # GET /deliveries
   def index
@@ -39,13 +41,14 @@ class DeliveriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_delivery
-      @delivery = Delivery.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def delivery_params
-      params.require(:delivery).permit(:product_id, :delivery_option, :delivery_price)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_delivery
+    @delivery = Delivery.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def delivery_params
+    params.require(:delivery).permit(:product_id, :delivery_option, :delivery_price)
+  end
 end

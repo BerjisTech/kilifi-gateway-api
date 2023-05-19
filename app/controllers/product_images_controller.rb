@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ProductImagesController < ApplicationController
-  before_action :set_product_image, only: %i[ show update destroy ]
+  before_action :set_product_image, only: %i[show update destroy]
 
   # GET /product_images
   def index
@@ -39,13 +41,14 @@ class ProductImagesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product_image
-      @product_image = ProductImage.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def product_image_params
-      params.require(:product_image).permit(:product_id, :image_url)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product_image
+    @product_image = ProductImage.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def product_image_params
+    params.require(:product_image).permit(:product_id, :image_url)
+  end
 end

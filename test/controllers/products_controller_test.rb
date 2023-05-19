@@ -1,35 +1,39 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class ProductsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @product = products(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get products_url, as: :json
     assert_response :success
   end
 
-  test "should create product" do
-    assert_difference("Product.count") do
-      post products_url, params: { product: { availability: @product.availability, description: @product.description, discount: @product.discount, name: @product.name, price: @product.price, product_type: @product.product_type, store_branch_id: @product.store_branch_id } }, as: :json
+  test 'should create product' do
+    assert_difference('Product.count') do
+      post products_url,
+           params: { product: { availability: @product.availability, description: @product.description, discount: @product.discount, name: @product.name, price: @product.price, product_type: @product.product_type, store_branch_id: @product.store_branch_id } }, as: :json
     end
 
     assert_response :created
   end
 
-  test "should show product" do
+  test 'should show product' do
     get product_url(@product), as: :json
     assert_response :success
   end
 
-  test "should update product" do
-    patch product_url(@product), params: { product: { availability: @product.availability, description: @product.description, discount: @product.discount, name: @product.name, price: @product.price, product_type: @product.product_type, store_branch_id: @product.store_branch_id } }, as: :json
+  test 'should update product' do
+    patch product_url(@product),
+          params: { product: { availability: @product.availability, description: @product.description, discount: @product.discount, name: @product.name, price: @product.price, product_type: @product.product_type, store_branch_id: @product.store_branch_id } }, as: :json
     assert_response :success
   end
 
-  test "should destroy product" do
-    assert_difference("Product.count", -1) do
+  test 'should destroy product' do
+    assert_difference('Product.count', -1) do
       delete product_url(@product), as: :json
     end
 

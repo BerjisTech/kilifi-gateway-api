@@ -1,35 +1,39 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class StoresControllerTest < ActionDispatch::IntegrationTest
   setup do
     @store = stores(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get stores_url, as: :json
     assert_response :success
   end
 
-  test "should create store" do
-    assert_difference("Store.count") do
-      post stores_url, params: { store: { coordinates: @store.coordinates, location_name: @store.location_name, name: @store.name, type: @store.type, user_id: @store.user_id } }, as: :json
+  test 'should create store' do
+    assert_difference('Store.count') do
+      post stores_url,
+           params: { store: { coordinates: @store.coordinates, location_name: @store.location_name, name: @store.name, type: @store.type, user_id: @store.user_id } }, as: :json
     end
 
     assert_response :created
   end
 
-  test "should show store" do
+  test 'should show store' do
     get store_url(@store), as: :json
     assert_response :success
   end
 
-  test "should update store" do
-    patch store_url(@store), params: { store: { coordinates: @store.coordinates, location_name: @store.location_name, name: @store.name, type: @store.type, user_id: @store.user_id } }, as: :json
+  test 'should update store' do
+    patch store_url(@store),
+          params: { store: { coordinates: @store.coordinates, location_name: @store.location_name, name: @store.name, type: @store.type, user_id: @store.user_id } }, as: :json
     assert_response :success
   end
 
-  test "should destroy store" do
-    assert_difference("Store.count", -1) do
+  test 'should destroy store' do
+    assert_difference('Store.count', -1) do
       delete store_url(@store), as: :json
     end
 

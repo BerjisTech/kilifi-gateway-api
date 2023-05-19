@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ProductVariantsController < ApplicationController
-  before_action :set_product_variant, only: %i[ show update destroy ]
+  before_action :set_product_variant, only: %i[show update destroy]
 
   # GET /product_variants
   def index
@@ -39,13 +41,14 @@ class ProductVariantsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product_variant
-      @product_variant = ProductVariant.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def product_variant_params
-      params.require(:product_variant).permit(:product_id, :name, :description, :price_difference)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product_variant
+    @product_variant = ProductVariant.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def product_variant_params
+    params.require(:product_variant).permit(:product_id, :name, :description, :price_difference)
+  end
 end

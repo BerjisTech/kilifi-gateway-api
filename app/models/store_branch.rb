@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StoreBranch < ApplicationRecord
   belongs_to :store
 

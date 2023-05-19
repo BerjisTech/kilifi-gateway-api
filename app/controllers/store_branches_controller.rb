@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class StoreBranchesController < ApplicationController
-  before_action :set_store_branch, only: %i[ show update destroy ]
+  before_action :set_store_branch, only: %i[show update destroy]
 
   # GET /store_branches
   def index
@@ -39,13 +41,14 @@ class StoreBranchesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_store_branch
-      @store_branch = StoreBranch.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def store_branch_params
-      params.require(:store_branch).permit(:store_id, :name, :coordinates, :location_name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_store_branch
+    @store_branch = StoreBranch.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def store_branch_params
+    params.require(:store_branch).permit(:store_id, :name, :coordinates, :location_name)
+  end
 end
