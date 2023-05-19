@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_19_134744) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_19_134807) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -116,6 +116,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_134744) do
     t.index ["user_id"], name: "index_services_on_user_id"
   end
 
+  create_table "staffs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.uuid "store_id", null: false
+    t.uuid "role_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["role_id"], name: "index_staffs_on_role_id"
+    t.index ["store_id"], name: "index_staffs_on_store_id"
+    t.index ["user_id"], name: "index_staffs_on_user_id"
+  end
+
   create_table "store_branches", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "store_id", null: false
     t.string "name"
@@ -184,6 +195,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_134744) do
   add_foreign_key "roles", "stores"
   add_foreign_key "services", "service_types"
   add_foreign_key "services", "users"
+  add_foreign_key "staffs", "roles"
+  add_foreign_key "staffs", "stores"
+  add_foreign_key "staffs", "users"
   add_foreign_key "store_branches", "stores"
   add_foreign_key "store_contacts", "stores"
   add_foreign_key "stores", "users"
